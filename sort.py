@@ -45,6 +45,7 @@ def process_resumes():
         )
     except Exception as e:
         print("Error in Connecting",e)
+        raise e
 
     # List all PDFs in the bucket
     try:
@@ -56,10 +57,10 @@ def process_resumes():
                 if filename.lower().endswith(".pdf"):
                     pdf_files.append(filename)
         print(pdf_files)
-
     except Exception as e:
         print("Error listing PDFs:", e)
         pdf_files = []
+        raise e
 
     for pdf in pdf_files:
             logging.info(f"Processing: {pdf}")
@@ -73,7 +74,8 @@ def process_resumes():
                 print("PDF loaded into memory!")
             except Exception as e:
                 print("Error fetching:", e)
-                continue
+                raise e
+
             pdf_bytes.seek(0)
             reader = PdfReader(pdf_bytes)
             print(f"Total pages in the PDF: {len(reader.pages)}")

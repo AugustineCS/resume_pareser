@@ -116,9 +116,7 @@ def process_resumes():
             - No explanation, no markdown, no text outside JSON.
 
             RESUME TEXT STARTS BELOW:
-            ---------------------------------------
             {text}
-            ---------------------------------------
             """
 
 
